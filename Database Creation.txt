@@ -1,0 +1,77 @@
+USE siteparser;
+
+CREATE TABLE ModelName
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	name TEXT
+);
+
+CREATE TABLE CarModel
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	model_name_id INTEGER REFERENCES ModelName(id),
+	code INTEGER,
+	configuration TEXT,
+	productionDate TEXT
+);
+
+CREATE TABLE Complectation
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	car_model_id INTEGER REFERENCES CarModel(id),
+	engine TEXT,
+	gearShiftType TEXT,
+	grade TEXT,
+	body TEXT,
+	atmMtm TEXT,
+	noofDoors TEXT,
+	driversPosition TEXT,
+	destinationOne TEXT,
+	destinationTwo TEXT
+);
+
+CREATE TABLE GroupName
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	groupName TEXT
+);
+
+CREATE TABLE SubgroupName
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	subgroupName TEXT
+);
+
+CREATE TABLE SparepartName
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	sparepartName TEXT
+);
+
+CREATE TABLE ComplectationGroup
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	complectation_id INTEGER REFERENCES Complectation(id),
+	group_name_id INTEGER REFERENCES GroupName(id)
+);
+
+CREATE TABLE ComplectationSubgroup
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	complectation_group_id INTEGER REFERENCES ComplectationGroup(id),
+	subgroup_name_id INTEGER REFERENCES SubgroupName(id),
+	imagePath TEXT
+);
+
+CREATE TABLE Sparepart
+(
+	id INTEGER PRIMARY KEY IDENTITY,
+	complectation_subgroup_id INTEGER REFERENCES ComplectationSubgroup(id),
+	sparepart_name_id INTEGER REFERENCES SparepartName(id),
+	code INTEGER,
+	count INTEGER,
+	tree TEXT,
+	treeCode TEXT,
+	date TEXT,
+	info TEXT
+);
