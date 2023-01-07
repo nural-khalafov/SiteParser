@@ -9,24 +9,41 @@ namespace SiteParser
 {
     public class Database
     {
+        public static bool isConnected;
+
         private static string DBSource = @"(localdb)\MSSQLLocalDB";
         private static string Catalog = "siteparser";
 
         private static string connectionString = String.Format
             ("Data Source={0};Initial Catalog={1};Persist Security Info=True;Integrated Security=true;",
             DBSource, Catalog);
+            //("Server = {0}, Authentication = Windows Authentication, Integrated Security = true, Database = siteparser",
+            //DBSource);
 
         private SqlConnection conn = new SqlConnection(connectionString);
 
         public Database() 
         {
-            Console.WriteLine("Opening connection");
-            conn.Open();
+            try 
+            {
+                Console.WriteLine("Opening connection...");
+
+                conn.Open();
+
+                Console.WriteLine("Connection successful!");
+
+                isConnected = true;
+            }
+            catch(Exception e) 
+            {
+                isConnected = false;
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
 
         ~Database() 
         {
-            Console.WriteLine("Closing connection");
+            Console.WriteLine("Closing connection...");
             conn.Close();
         }
 

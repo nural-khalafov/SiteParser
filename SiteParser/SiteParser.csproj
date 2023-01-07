@@ -76,8 +76,9 @@
   <ItemGroup>
     <Compile Include="Basic Classes\Complectation.cs" />
     <Compile Include="Basic Classes\Sparepart.cs" />
-    <Compile Include="Database\Database.cs" />
+    <Compile Include="Core\Database\Database.cs" />
     <Compile Include="Basic Classes\CarInfo.cs" />
+    <Compile Include="Core\Database\DBHandler.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,12 +13,18 @@ namespace SiteParser
     {
         static void Main(string[] args)
         {
-            // var parser = new Parser();
-            // var res = parser.GetCarModel().Result;
-            // res = parser.GetCarModelCode().Result;
+            DBHandler.GetDatabase();
 
-            AsyncContext.Run(() => Parser.GetCarInfo());
-            AsyncContext.Run(() => Parser.GetCarConfig());
+            if (Database.isConnected)
+            {
+                AsyncContext.Run(() => Parser.GetCarInfo());
+                AsyncContext.Run(() => Parser.GetCarConfig());
+            }
+            else 
+            {
+                Console.WriteLine("Connection failed...");
+            }
+
         }
     }
 }
