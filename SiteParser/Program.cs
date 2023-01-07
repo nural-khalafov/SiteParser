@@ -19,6 +19,7 @@ namespace SiteParser
             {
                 AsyncContext.Run(() => Parser.GetCarInfo());
                 AsyncContext.Run(() => Parser.GetCarConfig());
+                //DBHandler.GetDatabase().InsertTestRequest();
             }
             else 
             {

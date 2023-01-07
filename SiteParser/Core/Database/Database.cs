@@ -11,12 +11,15 @@ namespace SiteParser
     {
         public static bool isConnected;
 
-        private static string DBSource = @"(localdb)\MSSQLLocalDB";
-        private static string Catalog = "siteparser";
+        private static string DBSource = "(localdb)\\MSSQLLocalDB";
+        private static string DBName = "siteparser";
+        private static string User = "master";
+        private static string Password = "qwerty1";
 
         private static string connectionString = String.Format
-            ("Data Source={0};Initial Catalog={1};Persist Security Info=True;Integrated Security=true;",
-            DBSource, Catalog);
+            ("Server={0}; Database={1}; User ID={2}; Password={3};" +
+            "Persist Security Info=True; Integrated Security=false",
+            DBSource, DBName, User, Password);
             //("Server = {0}, Authentication = Windows Authentication, Integrated Security = true, Database = siteparser",
             //DBSource);
 
@@ -52,7 +55,13 @@ namespace SiteParser
 
         public void InsertTestRequest() 
         {
-            // do smth
+            using (var command = new SqlCommand("INSERT INTO ModelName (name)" +
+                                                "VALUES (@name1)", conn)) 
+            {
+                command.Parameters.AddWithValue("name1", "CAMRY");
+
+                int nRows = command.ExecuteNonQuery();
+            }
         }
 
         #endregion

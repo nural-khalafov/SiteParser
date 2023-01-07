@@ -74,12 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Basic Classes\Complectation.cs" />
-    <Compile Include="Basic Classes\Sparepart.cs" />
+    <Compile Include="Core\Complectation\Complectation.cs" />
+    <Compile Include="Core\Complectation\Sparepart.cs" />
     <Compile Include="Core\Database\Database.cs" />
-    <Compile Include="Basic Classes\CarInfo.cs" />
+    <Compile Include="Core\Complectation\CarInfo.cs" />
     <Compile Include="Core\Database\DBHandler.cs" />
-    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Core\Parser\Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
